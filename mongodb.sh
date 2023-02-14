@@ -1,6 +1,6 @@
 LOG_FILE=/tmp/mongobd/
 echo Setting MongoDb Repo
-curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo &>>/tmp/mongobd
+curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo &>>LOG_FILE
 echo status $?
 
 echo installing mongodb

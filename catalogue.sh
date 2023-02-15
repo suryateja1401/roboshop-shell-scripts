@@ -35,5 +35,5 @@ echo status $?
 
 echo start catalogue services
 systemctl start catalogue &>>LOG_FILE
-ystemctl enable catalogue &>>LOG_FILE
+systemctl enable catalogue &>>LOG_FILE
 echo ststus $?

@@ -46,7 +46,15 @@ if [ $? -eq 0 ]; then
     exit 1
 
 fi
-cd /home/roboshop &>>$LOG_FILE
+cd /home/roboshop
+rm -rf catalogue &>>$LOG_FILE
+if [ $? -eq 0 ]; then
+  echo status Success
+  else
+    echo status Failure
+    exit 1
+
+fi
 
 echo Extracting Catalogue Application code
 unzip /tmp/catalogue.zip &>>$LOG_FILE

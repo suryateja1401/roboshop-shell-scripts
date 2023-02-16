@@ -1,5 +1,9 @@
 LOG_FILE=/tmp/catalogue
+ID=$(id -u)
+if [ $ID -ne 0 ]; then
+  echo You should execute code as root user or with sudo previlages
 
+fi
 echo Create catalogue repo
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$LOG_FILE
 if [ $? -eq 0 ]; then

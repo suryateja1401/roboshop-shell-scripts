@@ -2,8 +2,8 @@ LOG_FILE=/tmp/catalogue
 ID=$(id -u)
 if [ $ID -ne 0 ]; then
   echo You should execute code as root user or with sudo previlages
-
 fi
+
 echo Create catalogue repo
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$LOG_FILE
 if [ $? -eq 0 ]; then
@@ -13,6 +13,7 @@ if [ $? -eq 0 ]; then
     exit 1
 
 fi
+
 echo Installing Nodejs
 yum install nodejs -y &>>$LOG_FILE
 if [ $? -eq 0 ]; then
@@ -35,7 +36,6 @@ if [ $? -ne 0 ]; then
 
     fi
 fi
-
 
 echo Downloading Catalogue Applicaton code
 curl -s -L -o  /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>$LOG_FILE

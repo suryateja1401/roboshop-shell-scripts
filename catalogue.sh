@@ -6,6 +6,7 @@ if [ $? -eq 0 ]; then
   echo status Success
   else
     echo status Failure
+    exit
 
 fi
 echo Installing Nodejs
@@ -14,6 +15,7 @@ if [ $? -eq 0 ]; then
   echo status Success
   else
     echo status Failure
+    exit
 
 fi
 
@@ -23,6 +25,7 @@ if [ $? -eq 0 ]; then
   echo status Success
   else
     echo status Failure
+    exit
 
 fi
 
@@ -32,6 +35,7 @@ if [ $? -eq 0 ]; then
   echo status Success
   else
     echo status Failure
+    exit
 
 fi
 cd /home/roboshop &>>$LOG_FILE
@@ -42,6 +46,7 @@ if [ $? -eq 0 ]; then
   echo status Success
   else
     echo status Failure
+    exit
 
 fi
 
@@ -54,6 +59,7 @@ if [ $? -eq 0 ]; then
   echo status Success
   else
     echo status Failure
+    exit
 
 fi
 
@@ -63,6 +69,7 @@ if [ $? -eq 0 ]; then
   echo status Success
   else
     echo status Failure
+    exit
 
 fi
 
@@ -73,5 +80,6 @@ if [ $? -eq 0 ]; then
   echo status Success
   else
     echo status Failure
+    exit
 
 fi

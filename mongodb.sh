@@ -25,7 +25,7 @@ statuscheck $?
 
 cd /tmp
 echo Extract Schema file
-unzip- o mongodb.zip &>>$LOG_FILE
+unzip -o mongodb.zip &>>$LOG_FILE
 statuscheck $?
 
 cd  mongodb-main

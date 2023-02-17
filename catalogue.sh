@@ -4,15 +4,19 @@ if [ $ID -ne 0 ]; then
   echo You should execute code as root user or with sudo previlages
 fi
 
+status check(){
+  if [ $1 -eq 0 ]; then
+    echo -e status = "\e[32mSuccess\e[0m"
+    else
+      echo -e status ="\e[31mFailure\e[0m"
+      exit 1
+
+  fi
+}
+
 echo Create catalogue repo
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$LOG_FILE
-if [ $? -eq 0 ]; then
-  echo -e status = "\e[32mSuccess\e[0m"
-  else
-    echo -e status ="\e[31mFailure\e[0m"
-    exit 1
 
-fi
 
 echo Installing Nodejs
 yum install nodejs -y &>>$LOG_FILE

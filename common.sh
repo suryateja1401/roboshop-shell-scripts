@@ -61,7 +61,7 @@ NODEJS(){
   systemctl daemon-reload &>>${LOG_FILE}
   systemctl enable ${COMPONENT} &>>${LOG_FILE}
 
-  echo start user services
+  echo start  ${COMPONENT} services
   systemctl start ${COMPONENT} &>>${LOG_FILE}
   statuscheck $?
 

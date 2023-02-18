@@ -42,9 +42,8 @@ mv /home/roboshop/user/systemd.service /etc/systemd/system/user.service &>>${LOG
 statuscheck $?
 
 systemctl daemon-reload &>>${LOG_FILE}
-
+systemctl enable user &>>${LOG_FILE}
 
 echo start user services
-systemctl enable user &>>${LOG_FILE}
 systemctl start user &>>${LOG_FILE}
 statusheck $?

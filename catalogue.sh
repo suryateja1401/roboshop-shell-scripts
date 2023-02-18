@@ -42,7 +42,9 @@ echo Setup catalogue services
 mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service &>>$LOG_FILE
 statuscheck $?
 
+systemctl daemon-reload &>>$LOG_FILE
+systemctl enable catalogue &>>$LOG_FILE
+
 echo start catalogue services
 systemctl start catalogue &>>$LOG_FILE
-systemctl enable catalogue &>>$LOG_FILE
 statuscheck $?

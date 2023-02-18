@@ -30,7 +30,7 @@ NODEJS(){
      fi
 
   echo Downloading {COMPONENT}Applicaton code
-  curl -s -L -o /tmp/{COMPONENT}.zip "https://github.com/roboshop-devops-project/user/archive/main.zip" &>>${LOG_FILE}
+  curl -s -L -o /tmp/{COMPONENT}.zip "https://github.com/roboshop-devops-project/{COMPONENT}/archive/main.zip" &>>${LOG_FILE}
   statuscheck $?
 
   cd /home/roboshop &>>${LOG_FILE}
@@ -42,7 +42,7 @@ NODEJS(){
   unzip -o /tmp/{COMPONENT}.zip &>>${LOG_FILE}
   statuscheck $?
 
-  mv user-main{COMPONENT} &>>${LOG_FILE}
+  mv {COMPONENT}-main{COMPONENT} &>>${LOG_FILE}
   cd /home/roboshop/{COMPONENT} &>>${LOG_FILE}
 
   echo Installing Nodejs Dependencies

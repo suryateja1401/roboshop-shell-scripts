@@ -39,7 +39,7 @@ statuscheck $?
 
 echo Update SystemD servicefile
 sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/roboshop/user/systemd.service &>>${LOG_FILE}
-stauscheck $?
+statuscheck $?
 
 echo Setup user services
 mv /home/roboshop/user/systemd.service /etc/systemd/system/user.service &>>${LOG_FILE}

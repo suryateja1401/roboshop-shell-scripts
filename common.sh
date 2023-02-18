@@ -38,11 +38,11 @@ NODEJS(){
   rm -rf ${COMPONENT} &>>${LOG_FILE}
   statuscheck $?
 
-  echo Extracting ${COMPONENT}Application code
+  echo Extracting ${COMPONENT} Application code
   unzip -o /tmp/${COMPONENT}.zip &>>${LOG_FILE}
   statuscheck $?
 
-  mv ${COMPONENT}-main${COMPONENT} &>>${LOG_FILE}
+  mv ${COMPONENT}-main ${COMPONENT} &>>${LOG_FILE}
 
   cd /home/roboshop/${COMPONENT} &>>${LOG_FILE}
 

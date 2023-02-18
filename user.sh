@@ -2,7 +2,7 @@ LOG_FILE=/tmp/user
 
 source common.sh
 
-echo create user repo
+echo create Nodejs  repo
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG_FILE}
 statuscheck $?
 

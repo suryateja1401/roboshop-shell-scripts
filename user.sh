@@ -2,40 +2,9 @@ LOG_FILE=/tmp/user
 
 source common.sh
 
-echo create Nodejs  repo
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG_FILE}
-statuscheck $?
+COMPONENT=user
 
-echo Installing Nodejs
-yum install nodejs -y &>>${LOG_FILE}
-statuscheck $?
-
-id roboshop &>>${LOG_FILE}
-if [ $? -ne 0 ]; then
-    echo Adding Roboshop Application User
-    useradd roboshop &>>${LOG_FILE}
-  statuscheck $?
-   fi
-
-echo Downloading user Applicaton code
-curl -s -L -o /tmp/user.zip "https://github.com/roboshop-devops-project/user/archive/main.zip" &>>${LOG_FILE}
-statuscheck $?
-
-cd /home/roboshop &>>${LOG_FILE}
-echo Clean Old App Content
-rm -rf user &>>${LOG_FILE}
-statuscheck $?
-
-echo Extracting user Application code
-unzip -o /tmp/user.zip &>>${LOG_FILE}
-statuscheck $?
-
-mv user-main user &>>${LOG_FILE}
-cd /home/roboshop/user &>>${LOG_FILE}
-
-echo Installing Nodejs Dependencies
-npm install &>>${LOG_FILE}
-statuscheck $?
+NODEJS()
 
 echo Update SystemD servicefile
 sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/roboshop/user/systemd.service &>>${LOG_FILE}

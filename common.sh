@@ -51,7 +51,7 @@ NODEJS(){
   statuscheck $?
 
   echo Update SystemD servicefile
-  sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service &>>${LOG_FILE}
+  sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service &>>${LOG_FILE}
   statuscheck $?
 
   echo Setup ${COMPONENT} services
@@ -61,7 +61,7 @@ NODEJS(){
   systemctl daemon-reload &>>${LOG_FILE}
   systemctl enable ${COMPONENT} &>>${LOG_FILE}
 
-  echo start  ${COMPONENT} services
+  echo start  ${COMPONENT}services
   systemctl start ${COMPONENT} &>>${LOG_FILE}
   statuscheck $?
 

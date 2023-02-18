@@ -38,7 +38,7 @@ echo Installing Nodejs Dependencies
 npm install &>>$LOG_FILE
 statuscheck $?
 
-echo Update SystemD servicefile
+echo Update SystemD service file
 sed -i -e 's/MONGO_DNSNAME/mongodb.robosho.internal' /home/roboshop/catalogue/systemd.service &>>$LOG_FILE
 statuscheck $?
 

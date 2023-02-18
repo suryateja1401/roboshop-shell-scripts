@@ -43,6 +43,7 @@ NODEJS(){
   statuscheck $?
 
   mv ${COMPONENT}-main${COMPONENT} &>>${LOG_FILE}
+
   cd /home/roboshop/${COMPONENT} &>>${LOG_FILE}
 
   echo Installing Nodejs Dependencies

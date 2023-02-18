@@ -40,6 +40,7 @@ statuscheck $?
 
 echo Update SystemD servicefile
 sed -i -e 's/MONGO_DNSNAME/mongodb.robosho.internal' /home/roboshop/catalogue/systemd.service &>>$LOG_FILE
+statuscheck $?
 
 echo Setup catalogue services
 mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service &>>$LOG_FILE

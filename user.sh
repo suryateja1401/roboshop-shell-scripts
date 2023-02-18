@@ -46,4 +46,4 @@ systemctl enable user &>>${LOG_FILE}
 
 echo start user services
 systemctl start user &>>${LOG_FILE}
-statusheck $?
+statuscheck $?

@@ -38,6 +38,7 @@ echo Installing Nodejs Dependencies
 npm install &>>$LOG_FILE
 statuscheck $?
 
+
 echo Setup catalogue services
 mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service &>>$LOG_FILE
 statuscheck $?

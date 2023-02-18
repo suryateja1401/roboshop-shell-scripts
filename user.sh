@@ -23,7 +23,7 @@ statuscheck $?
 
 cd /home/roboshop &>>${LOG_FILE}
 echo Clean Old App Content
-rm -rf catalogue &>>${LOG_FILE}
+rm -rf user &>>${LOG_FILE}
 statuscheck $?
 
 echo Extracting user Application code

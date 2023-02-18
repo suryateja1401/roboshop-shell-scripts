@@ -29,21 +29,21 @@ NODEJS(){
     statuscheck $?
      fi
 
-  echo Downloading user Applicaton code
-  curl -s -L -o /tmp/user.zip "https://github.com/roboshop-devops-project/user/archive/main.zip" &>>${LOG_FILE}
+  echo Downloading {COMPONENT}Applicaton code
+  curl -s -L -o /tmp/{COMPONENT}.zip "https://github.com/roboshop-devops-project/user/archive/main.zip" &>>${LOG_FILE}
   statuscheck $?
 
   cd /home/roboshop &>>${LOG_FILE}
   echo Clean Old App Content
-  rm -rf user &>>${LOG_FILE}
+  rm -rf {COMPONENT} &>>${LOG_FILE}
   statuscheck $?
 
-  echo Extracting user Application code
-  unzip -o /tmp/user.zip &>>${LOG_FILE}
+  echo Extracting {COMPONENT}Application code
+  unzip -o /tmp/{COMPONENT}.zip &>>${LOG_FILE}
   statuscheck $?
 
-  mv user-main user &>>${LOG_FILE}
-  cd /home/roboshop/user &>>${LOG_FILE}
+  mv user-main{COMPONENT} &>>${LOG_FILE}
+  cd /home/roboshop/{COMPONENT} &>>${LOG_FILE}
 
   echo Installing Nodejs Dependencies
   npm install &>>${LOG_FILE}

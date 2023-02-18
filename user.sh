@@ -4,7 +4,7 @@ source common.sh
 
 COMPONENT=user
 
-NODEJS()
+NODEJS
 
 echo Update SystemD servicefile
 sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/roboshop/user/systemd.service &>>${LOG_FILE}

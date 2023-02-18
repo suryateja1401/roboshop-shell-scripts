@@ -36,3 +36,14 @@ cd /home/roboshop/user &>>$LOG_FILE
 echo Installing Nodejs Dependencies
 npm install &>>$LOG_FILE
 statuscheck $?
+
+echo Setup user  services
+mv /home/roboshop/user/systemd.service /etc/systemd/system/user.service &>>$LOG_FILE
+statuscheck $?
+
+systemctl daemon-reload &>>$LOG_FILE
+systemctl enable user &>>$LOG_FILE
+
+echo start user services
+systemctl start user &>>$LOG_FILE
+statusheck $?

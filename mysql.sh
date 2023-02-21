@@ -1,11 +1,23 @@
 L0G_FILE=/tmp/mysql
 
 source common.sh
+
+echo setting up Mysql Repo
 curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo &>>$LOG_FILE
-# dnf module disable mysql  &>>$LOG_FILE
-# yum install mysql-community-server -y  &>>$LOG_FILE
-# systemctl enable mysqld  &>>$LOG_FILE
-# systemctl start mysqld  &>>$LOG_FILE
+statuscheck $?
+
+echo Disable Mysql default module  to enable Mysql 5.7 module
+dnf module disable mysql  &>>$LOG_FILE
+statuscheck $?
+
+echo Install Mysql
+yum install mysql-community-server -y  &>>$LOG_FILE
+statuscheck $?
+
+echo start mysql services
+systemctl enable mysqld  &>>$LOG_FILE
+systemctl start mysqld  &>>$LOG_FILE
+statuscheck $?
 # grep temp /var/log/mysqld.log  &>>$LOG_FILE
 # mysql_secure_installation  &>>$LOG_FILE
 # mysql -uroot -pRoboShop@1  &>>$LOG_FILE

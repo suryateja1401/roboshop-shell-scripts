@@ -1,4 +1,4 @@
-L0G_FILE=/tmp/mysql
+LOG_FILE=/tmp/mysql
 
 source common.sh
 

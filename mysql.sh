@@ -1,5 +1,6 @@
 L0G_FILE=/tmp/mysql
 
+source common.sh
 
 
 echo setting up Mysql Repo

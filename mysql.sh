@@ -16,8 +16,9 @@ statuscheck $?
 
 echo start mysql services
 systemctl enable mysqld  &>>$LOG_FILE
-systemctl start mysqld  &>>$LOG_FILE
+systemctl restart mysqld  &>>$LOG_FILE
 statuscheck $?
+
 # grep temp /var/log/mysqld.log  &>>$LOG_FILE
 # mysql_secure_installation  &>>$LOG_FILE
 # mysql -uroot -pRoboShop@1  &>>$LOG_FILE

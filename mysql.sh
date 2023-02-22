@@ -3,7 +3,7 @@ L0G_FILE=/tmp/mysql
 source common.sh
 
 echo setting up Mysql Repo
-curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo &>>$LOG_FILE
+curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo &>>LOG_FILE
 statuscheck $?
 
 echo Disable Mysql default module  to enable Mysql 5.7 module

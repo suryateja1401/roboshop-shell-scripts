@@ -13,6 +13,33 @@ statuscheck() {
   fi
 }
 
+APP_PREREQ(){
+  id roboshop &>>${LOG_FILE}
+    if [ $? -ne 0 ]; then
+        echo Adding Roboshop Application User
+        useradd roboshop &>>${LOG_FILE}
+      statuscheck $?
+       fi
+
+    echo Downloading ${COMPONENT}Applicaton code
+    curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>${LOG_FILE}
+    statuscheck $?
+
+    cd /home/roboshop &>>${LOG_FILE}
+    echo Clean Old App Content
+    rm -rf ${COMPONENT} &>>${LOG_FILE}
+    statuscheck $?
+
+    echo Extracting ${COMPONENT} Application code
+    unzip -o /tmp/${COMPONENT}.zip &>>${LOG_FILE}
+    statuscheck $?
+
+    mv ${COMPONENT}-main ${COMPONENT} &>>${LOG_FILE}
+
+    cd /home/roboshop/${COMPONENT} &>>${LOG_FILE}
+
+}
+
 NODEJS(){
   echo create Nodejs  repo
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG_FILE}
@@ -22,29 +49,7 @@ NODEJS(){
   yum install nodejs -y &>>${LOG_FILE}
   statuscheck $?
 
-  id roboshop &>>${LOG_FILE}
-  if [ $? -ne 0 ]; then
-      echo Adding Roboshop Application User
-      useradd roboshop &>>${LOG_FILE}
-    statuscheck $?
-     fi
 
-  echo Downloading ${COMPONENT}Applicaton code
-  curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>${LOG_FILE}
-  statuscheck $?
-
-  cd /home/roboshop &>>${LOG_FILE}
-  echo Clean Old App Content
-  rm -rf ${COMPONENT} &>>${LOG_FILE}
-  statuscheck $?
-
-  echo Extracting ${COMPONENT} Application code
-  unzip -o /tmp/${COMPONENT}.zip &>>${LOG_FILE}
-  statuscheck $?
-
-  mv ${COMPONENT}-main ${COMPONENT} &>>${LOG_FILE}
-
-  cd /home/roboshop/${COMPONENT} &>>${LOG_FILE}
 
   echo Installing Nodejs Dependencies
   npm install &>>${LOG_FILE}
@@ -66,4 +71,22 @@ NODEJS(){
   statuscheck $?
 
 
+}
+JAVA(){
+  echo Installing maven
+  yum install maven -y &>>${LOG_FILE}
+  statuscheck $?
+
+  # useradd roboshop
+  $ cd /home/roboshop
+  $ curl -s -L -o /tmp/shipping.zip "https://github.com/roboshop-devops-project/shipping/archive/main.zip"
+  $ unzip /tmp/shipping.zip
+  $ mv shipping-main shipping
+  $ cd shipping
+  $ mvn clean package
+  $ mv target/shipping-1.0.jar shipping.jar
+  # mv /home/roboshop/shipping/systemd.service /etc/systemd/system/shipping.service
+  # systemctl daemon-reload
+  # systemctl start shipping
+  # systemctl enable shipping
 }

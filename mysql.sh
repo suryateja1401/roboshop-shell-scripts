@@ -21,8 +21,9 @@ systemctl restart mysqld  &>>$LOG_FILE
 statuscheck $?
 
 DEFAULT_PASSWORD=$( sudo grep 'temporary password'  /var/log/mysqld.log |awk '{print $NF}')
-echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('mypass');
-      FLUSH PRIVILEGES;" >/tmp/root-pass.sql
+
+echo SET PASSWORD FOR 'root'@'localhost' = PASSWORD('mypass');
+      FLUSH PRIVILEGES; >/tmp/root-pass.sql
 
 #echo show databases
 #mysql -uroot -p${ROBOSHOP_MYSQL_PASSWORD}  &>>$LOG_FILE
@@ -31,7 +32,7 @@ echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('mypass');
  # echo Change the default root password
 #mysql --connect-expired-password  -uroot -p"${DEFAULT_PASSWORD}" </tmp/root-pass.sql &>>$LOG_FILE
   #statuscheck $?
-fi
+#fi
 
 
 # grep temp /var/log/mysqld.log  &>>$LOG_FILE

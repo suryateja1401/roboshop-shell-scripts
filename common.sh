@@ -40,6 +40,25 @@ APP_PREREQ(){
 
 }
 
+SYSTEMD_SETUP(){
+  echo Update SystemD servicefile
+    sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e  's/MONGO_DNSNAME/mongobd.roboshop.internal/'/home/roboshop/${COMPONENT}/systemd.service &>>${LOG_FILE}
+    statuscheck $?
+
+    echo Setup ${COMPONENT} services
+    mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service &>>${LOG_FILE}
+    statuscheck $?
+
+    systemctl daemon-reload &>>${LOG_FILE}
+    systemctl enable ${COMPONENT} &>>${LOG_FILE}
+
+    echo start  ${COMPONENT}services
+    systemctl start ${COMPONENT} &>>${LOG_FILE}
+    statuscheck $?
+
+
+}
+
 NODEJS(){
   echo create Nodejs  repo
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG_FILE}
@@ -55,23 +74,9 @@ NODEJS(){
   npm install &>>${LOG_FILE}
   statuscheck $?
 
-  echo Update SystemD servicefile
-  sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e  's/MONGO_DNSNAME/mongobd.roboshop.internal/'/home/roboshop/${COMPONENT}/systemd.service &>>${LOG_FILE}
-  statuscheck $?
-
-  echo Setup ${COMPONENT} services
-  mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service &>>${LOG_FILE}
-  statuscheck $?
-
-  systemctl daemon-reload &>>${LOG_FILE}
-  systemctl enable ${COMPONENT} &>>${LOG_FILE}
-
-  echo start  ${COMPONENT}services
-  systemctl start ${COMPONENT} &>>${LOG_FILE}
-  statuscheck $?
-
-
+  SYSTEMD_SETUP
 }
+
 JAVA(){
   echo Installing maven
   yum install maven -y &>>${LOG_FILE}
@@ -84,8 +89,5 @@ JAVA(){
   mv target/shipping-1.0.jar shipping.jar &>>${LOG_FILE}
   statuscheck $?
 
-  # mv /home/roboshop/shipping/systemd.service /etc/systemd/system/shipping.service
-  # systemctl daemon-reload
-  # systemctl start shipping
-  # systemctl enable shipping
+  SYSTEMD_SETUP
 }

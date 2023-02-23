@@ -1,7 +1,6 @@
-LOG_FILE=/tmp/user
+COMPONENT=shipping
+LOG_FILE=/tmp/shipping
 
 source common.sh
 
-COMPONENT=cart
-
-NODEJS
+JAVA

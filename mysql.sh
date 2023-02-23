@@ -38,11 +38,16 @@ if [ $? -eq 0 ]; then
   statuscheck $?
 fi
 
+echo Download the schema
+curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip"  &>>$LOG_FILE
+statuscheck $?
 
+echo extract schema
+cd /tmp  &>>$LOG_FILE
+unzip mysql.zip  &>>$LOG_FILE
+statuscheck $?
 
-# unin#install plugin validate_password  &>>$LOG_FILE
-# curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip"  &>>$LOG_FILE
-# cd /tmp  &>>$LOG_FILE
-# unzip mysql.zip  &>>$LOG_FILE
-# cd mysql-main  &>>$LOG_FILE
-# mysql -u root -pRoboShop@1 <shipping.sql  &>>$LOG_FILE
+echo LOad schema
+cd mysql-main  &>>$LOG_FILE
+mysql -u root -p${ROBOSHOP_MYSQL_PASSWORD} <shipping.sql  &>>$LOG_FILE
+statuscheck $?

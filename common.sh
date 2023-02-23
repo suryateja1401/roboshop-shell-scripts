@@ -49,7 +49,7 @@ NODEJS(){
   yum install nodejs -y &>>${LOG_FILE}
   statuscheck $?
 
-
+  APP_PREREQ
 
   echo Installing Nodejs Dependencies
   npm install &>>${LOG_FILE}
@@ -77,12 +77,8 @@ JAVA(){
   yum install maven -y &>>${LOG_FILE}
   statuscheck $?
 
-  # useradd roboshop
-  $ cd /home/roboshop
-  $ curl -s -L -o /tmp/shipping.zip "https://github.com/roboshop-devops-project/shipping/archive/main.zip"
-  $ unzip /tmp/shipping.zip
-  $ mv shipping-main shipping
-  $ cd shipping
+  APP_PREREQ
+
   $ mvn clean package
   $ mv target/shipping-1.0.jar shipping.jar
   # mv /home/roboshop/shipping/systemd.service /etc/systemd/system/shipping.service

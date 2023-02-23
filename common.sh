@@ -79,8 +79,11 @@ JAVA(){
 
   APP_PREREQ
 
-  $ mvn clean package
-  $ mv target/shipping-1.0.jar shipping.jar
+  echo download dependies and make package
+  mvn clean package &>>${LOG_FILE}
+  mv target/shipping-1.0.jar shipping.jar &>>${LOG_FILE}
+  statuscheck $?
+
   # mv /home/roboshop/shipping/systemd.service /etc/systemd/system/shipping.service
   # systemctl daemon-reload
   # systemctl start shipping

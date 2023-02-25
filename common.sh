@@ -104,5 +104,8 @@ PYTHON(){
   pip3 install -r requirements.txt  &>>$LOG_FILE
   statuscheck $?
 
+  APP_UID=${id -u roboshop}
+  APP_GID=${id -g roboshop}
+
 
 }

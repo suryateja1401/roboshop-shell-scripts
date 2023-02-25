@@ -107,7 +107,7 @@ PYTHON(){
   APP_GID=$(id -g roboshop)
 
   echo update payment configuration file
-  sed -i -e "/uid/ c uid = ${APP_UID}" -e "/gid/ c gid ${APP_GID}" /home/roboshop/${COMPONENT}/${COMPONENT}.in  &>>$LOG_FILE
+  sed -i -e "/uid/ c uid = ${APP_UID}" -e "/gid/ c gid ${APP_GID}" /home/roboshop/${COMPONENT}/${COMPONENT}.ini  &>>$LOG_FILE
   statuscheck $?
 
   SYSTEMD_SETUP

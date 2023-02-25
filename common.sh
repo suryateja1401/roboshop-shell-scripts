@@ -103,8 +103,8 @@ PYTHON(){
   pip3 install -r requirements.txt  &>>$LOG_FILE
   statuscheck $?
 
-  APP_UID=${id -u roboshop}
-  APP_GID=${id -g roboshop}
+  APP_UID=$(id -u roboshop)
+  APP_GID=$(id -g roboshop)
 
   echo update payment configuration file
   sed -i -e "/uid/ c uid = ${APP_UID}" -e "/gid/ c gid ${APP_GID}" /home/roboshop/${COMPONENT}/${COMPONENT}.in  &>>$LOG_FILE

@@ -42,9 +42,8 @@ APP_PREREQ(){
 
 SYSTEMD_SETUP(){
   echo Update SystemD servicefile
-    sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e  's/MONGO_DNSNAME/mongobd.roboshop.internal/'/home/roboshop/${COMPONENT}/systemd.service
-    -e 's/CARTENDPOINT/catalogue.roboshop.internal'
-    -e 's/DBHOST/mysql.roboshop.internal/'&>>${LOG_FILE}
+    sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e  's/MONGO_DNSNAME/mongobd.roboshop.internal/'
+    -e 's/CARTENDPOINT/catalogue.roboshop.internal'-e 's/DBHOST/mysql.roboshop.internal/' -e 's/CARTHOST/cart.roboshop.internal/' -e 's/USERHOST/user.roboshop.internal/'-e 's/AMQPHOST/rabbitmq.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service &>>${LOG_FILE}
     statuscheck $?
 
     echo Setup ${COMPONENT} services
@@ -110,6 +109,9 @@ PYTHON(){
   echo update payment configuration file
   sed -i -e "/uid/ c uid = ${APP_UID}" -e "/gid/ c gid ${APP_GID}" /home/roboshop/${COMPONENT}/${COMPONENT}.in  &>>$LOG_FILE
   statuscheck $?
+
+  SYSTEMD_SETUP
+
 
 
 }

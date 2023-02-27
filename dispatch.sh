@@ -5,4 +5,6 @@ LOG_FILE=/tmp/${COMPONENT}
 source common.sh
 
 echo install golang
-yum install golang -y
+yum install golang -y &>>$LOG_FILE
+statuscheck $?
+

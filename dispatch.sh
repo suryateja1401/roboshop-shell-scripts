@@ -22,4 +22,4 @@ echo build golang
 go build &>>$LOG_FILE
 statuscheck $?
 
-SYSTEMD_SETUP()
+SYSTEMD_SETUP

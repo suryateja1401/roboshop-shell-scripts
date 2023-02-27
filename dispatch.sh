@@ -9,3 +9,15 @@ yum install golang -y &>>$LOG_FILE
 statuscheck $?
 
 APP_PREREQ
+
+echo initialising golang
+go mod init dispatch &>>$LOG_FILE
+statuscheck $?
+
+echo getting dependies of golang
+go get &>>$LOG_FILE
+statuscheck $?
+
+echo build golang
+go build &>>$LOG_FILE
+statuscheck $?

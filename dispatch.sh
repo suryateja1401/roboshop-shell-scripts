@@ -8,3 +8,4 @@ echo install golang
 yum install golang -y &>>$LOG_FILE
 statuscheck $?
 
+APP_PREREQ

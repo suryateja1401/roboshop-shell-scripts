@@ -3,7 +3,7 @@ LOG_FILE=/tmp/mysql
 source common.sh
 
 if [ -z "${ROBOSHOP_MYSQL_PASSWORD}" ]; then
-  echo -e "\e[32m ROBOSHOP_MYSQL_PASSWORD env variable is needed \e[0m"
+  echo -e "\e[31m ROBOSHOP_MYSQL_PASSWORD env variable is needed \e[0m"
   exit 1
     
 fi

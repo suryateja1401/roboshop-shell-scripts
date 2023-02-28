@@ -8,7 +8,6 @@ if [ -z "${ROBOSHOP_MYSQL_PASSWORD}" ]; then
     
 fi
 
-
 echo setting up Mysql Repo
 curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo &>>$LOG_FILE
 statuscheck $?

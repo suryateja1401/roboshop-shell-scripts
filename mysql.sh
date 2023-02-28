@@ -26,9 +26,9 @@ systemctl enable mysqld  &>>$LOG_FILE
 systemctl restart mysqld  &>>$LOG_FILE
 statuscheck $?
 
-DEFAULT_PASSWORD=$( sudo grep 'temporary password'  /var/log/mysqld.log |awk '{print $NF}')
+DEFAULT_PASSWORD=$( sudo grep 'temporary password'  /var/log/mysqld.log |awk '{print $NF}')  &>>$LOG_FILE
 
-echo "SET PASSWORD FOR 'root'@'localhost' =PASSWORD ('${ROBOSHOP_MYSQL_PASSWORD}');FLUSH PRIVILEGES;" >/tmp/root-pass.sql
+echo "SET PASSWORD FOR 'root'@'localhost' =PASSWORD ('${ROBOSHOP_MYSQL_PASSWORD}');FLUSH PRIVILEGES;" >/tmp/root-pass.sql  &>>$LOG_FILE
 
 echo "show databases;" |mysql -uroot -p${ROBOSHOP_MYSQL_PASSWORD}  &>>$LOG_FILE
 if [ $? -ne 0 ];then
